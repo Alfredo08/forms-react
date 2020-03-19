@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ChangeName from './ChangeName';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor( props ){
+    super( props );
+
+    this.state = {
+      name : 'Default'
+    }
+  } 
+
+  changeName = ( event ) => {
+    event.preventDefault();
+    
+    let newName = event.target.newName.value;
+
+    this.setState({
+      name : newName
+    });
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <ChangeName changeName={this.changeName} name={this.state.name}/>
+      </div>
+    );
+  }
 }
 
 export default App;
